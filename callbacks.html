@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallBack</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, purple, yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3rem;
+            overflow: hidden;
+        }
+
+        body div {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        #post-container {
+            width: 450px;
+            height: 300px;
+            background-color: white;
+            margin-top: 2rem;
+            border-radius: 12px;
+            padding: 24px;
+            overflow-y: auto;
+            font-size: 16px;
+        }
+
+        .btnClickMe {
+            padding: 8px 12px;
+            font-size: large;
+            border-radius: 4px;
+            border: none;
+            transition: all 0.6s;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .btnClickMe:hover {
+            background: linear-gradient(to right, blue, yellow);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button class="btnClickMe" onclick="updateDisplay()">Click me</button>
+        <div id="post-container">
+            Hello world..!
+        </div>
+    </div>
+    <script>
+
+        const resultDiv = document.getElementById('post-container')
+
+        // ------------------------------------ function that fetch a data from API and pass that data into the callback function ------------------------------------
+        function fetchData(callback) {
+            fetch('https://dummyjson.com/posts')
+                .then(res => res.json())
+                .then(data => callback(null, data))
+                .catch(error => callback(error, null))
+        }
+
+
+        // ------------------------------------ Updating display ------------------------------------
+        function updateDisplay() {
+            resultDiv.textContent = 'Fetching Data...';
+
+            fetchData((error, data) => {
+                if (error) {
+                    resultDiv.textContent = 'Error fetching data...'
+                }
+                else {
+                    // ------------------------------------ Posts array ------------------------------------
+                    const posts = data.posts
+
+                    // ------------------------------------ Displaying title after 5sec. ------------------------------------
+                    setTimeout(() => {
+
+                        // ------------------------------------ Removing previous message e.g (Fetching Data...) ------------------------------------
+
+                        resultDiv.textContent = " "
+                        posts.forEach(inelement => {
+                            const title = document.createElement('p')
+                            title.style.margin = "4px 0"
+                            title.textContent = element.title
+                            resultDiv.appendChild(title)
+                        });
+                    }, 5000)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
