@@ -7,7 +7,7 @@ promises, and async/await while integrating API calls to display Data
 
 
 
------------------------------------------------------------- 👍👍👍👍 CallBacks 👍👍👍👍 -----------------------------------------------------
+------------------------------------------------------------ 👍👍👍 CallBacks 👍👍👍 -----------------------------------------------------
 
 
 Part - 1
@@ -36,7 +36,7 @@ Display the fetched data (post titles) in the div element after the callBack is 
 
 
 
------------------------------------------------------------- promises ------------------------------------------------------------
+------------------------------------------------------------ 👍👍👍 Promises 👍👍👍 ------------------------------------------------------------
 
 
 Part - 2
@@ -51,24 +51,24 @@ Part - 2
 
  -------- promises Implementation --------
 
---- Button and div element in html file
---- functionality that creates a promise to fetch the JSONPlaceholder (API (POSTS endpoint) : - https://dummyjson.com/posts)
----  Display "Loading..." in the div element while the Promise is pending and 
-     update the text to show the fetched data once the Promise is resolved.
+--- Button and div element in html file --------------------------------------------------------------------------------------------- Done 👍
+--- functionality that creates a promise to fetch the JSONPlaceholder (API (POSTS endpoint) : - https://dummyjson.com/posts) -------- Done 👍
+--- Display "Loading..." in the div element while the Promise is pending and -------------------------------------------------------- Done 👍
+    update the text to show the fetched data once the Promise is resolved. ---------------------------------------------------------- Done 👍
 
 
      
 -------- Error Handling --------
 
---- focus on error handling.
---- if promise take longer than 5s to resolve reject it with message like Operation timed out
---- Display the error message if promise is rejected.
+--- focus on error handling. -------------------------------------------------------------------------------------------------------- Done 👍
+--- if promise take longer than 5s to resolve reject it with message like Operation timed out --------------------------------------- Done 👍
+--- Display the error message if promise is rejected. ------------------------------------------------------------------------------- Done 👍
 
 
 
 
 
------------------------------------------------------------- async-await ------------------------------------------------------------
+------------------------------------------------------------ Async-Await ------------------------------------------------------------
 
 
 Part - 3

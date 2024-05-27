@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Promises</title>
     <style>
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         body {
@@ -18,24 +22,45 @@
             align-items: center;
             justify-content: center;
             padding-top: 3rem;
-            overflow: hidden;
+            /* overflow: hidden; */
         }
 
-        body div {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
+        .mainContainer {
+            width: 100vw;
         }
 
-        #post-container {
-            width: 450px;
-            height: 300px;
+        #postContainer {
+            width: 80%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            min-height: 400px;
             background-color: white;
-            margin-top: 2rem;
+            margin: auto;
             border-radius: 12px;
             padding: 24px;
-            overflow-y: auto;
             font-size: 16px;
+        }
+
+        .postCard {
+            width: fit-content;
+            min-height: 300px;
+            border: 1px solid black;
+            margin: 20px;
+            padding: 14px;
+        }
+
+        .postCard h3 {
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        .postCard p {
+            font-size: 12px;
+        }
+
+        .postCardReaction {
+            margin: 12px 0;
+            display: block;
         }
 
         .btnClickMe {
@@ -45,7 +70,8 @@
             border: none;
             transition: all 0.6s;
             width: fit-content;
-            margin: 0 auto;
+            display: block;
+            margin: 2rem auto;
         }
 
         .btnClickMe:hover {
@@ -56,13 +82,77 @@
 </head>
 
 <body>
-    <div>
+    <div class="mainContainer">
         <button class="btnClickMe" onclick="updateDisplay()">Click me</button>
-        <div id="post-container">
+        <div id="postContainer">
             Hello world..!
         </div>
     </div>
     <script>
+
+        // ------------------------------------  Fetching data using fetch method ------------------------------------
+
+        function fetchData() {
+            return new Promise((resolve, reject) => {
+                fetch('https://dummyjson.com/posts')
+                    .then(response => response.json())
+                    .then(data => resolve(data))
+                    .catch(error => reject(error))
+            })
+        }
+
+
+        // ------------------------------------ Creating Promise which only reject with error message ------------------------------------
+
+        function createTimeoutPromise(timeOut) {
+            return new Promise((_, reject) => {
+                setTimeout(() => reject(new Error('Operation time out..')), timeOut)
+            })
+        }
+
+        // ------------------------------------ Creating new Promise ------------------------------------
+
+        function updateDisplay() {
+            const postContainer = document.getElementById('postContainer')
+            postContainer.innerHTML = "Loading..."
+
+            // ------------------------------------ If fetchData method takes time more then 5000 milliseconds (5sec) to execute then below function will win the race ------------------------------------
+            // ------------------------------------ Who ever wins will be use for futher evaluation.
+
+            const result = fetchData()
+            const timeoutPromis = createTimeoutPromise(5000);
+
+
+            // ------------------------------------ Race between both promise who ever return with data or error ------------------------------------
+            // ------------------------------------ first then new Promise will be created and that promise will be used further ------------------------------------
+
+            Promise.race([result, timeoutPromis])
+                .then(data => {
+
+                    const posts = data.posts;     // ------------------------------------ Array containing posts ------------------------------------
+                    postContainer.innerHTML = " " // ------------------------------------ clearing postContainer ------------------------------------
+
+                    // ------------------------------------ Creating card and apending into the postContainer ------------------------------------
+
+                    posts.forEach(post => {
+                        const cardToShocaseData = document.createElement('div');
+                        cardToShocaseData.classList.add('postCard');
+                        cardToShocaseData.innerHTML = `<h3>${post.title}</h3>
+                                                      <p>${post.body}</p>
+                                                   <div class="postCardReaction">
+                                                         <span><i class="fa-regular fa-thumbs-up"></i><span> ${post.reactions.likes}</span></span>
+                                                         <span><i class="fa-regular fa-thumbs-down"></i><span> ${post.reactions.dislikes}</span></span>
+                                                   </div>
+                                                   <small>Views ${post.views}</small>`
+                        postContainer.appendChild(cardToShocaseData);
+                    });
+
+
+                    // ------------------------------------ Handling error ------------------------------------
+                }).catch(error => {
+                    postContainer.innerHTML = `<p style="color: red;">${error.message}</p>`
+                })
+        }
     </script>
 </body>
 

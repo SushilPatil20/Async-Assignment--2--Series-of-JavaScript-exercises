@@ -4,11 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Async-Await</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, purple, yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3rem;
+            overflow: hidden;
+        }
+
+        body div {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        #post-container {
+            width: 450px;
+            height: 300px;
+            background-color: white;
+            margin-top: 2rem;
+            border-radius: 12px;
+            padding: 24px;
+            overflow-y: auto;
+            font-size: 16px;
+        }
+
+        .btnClickMe {
+            padding: 8px 12px;
+            font-size: large;
+            border-radius: 4px;
+            border: none;
+            transition: all 0.6s;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .btnClickMe:hover {
+            background: linear-gradient(to right, blue, yellow);
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hare Krishna</h1>
+    <div>
+        <button class="btnClickMe" onclick="updateDisplay()">Click me</button>
+        <div id="post-container">
+            Hello world..!
+        </div>
+    </div>
 </body>
 
 </html>

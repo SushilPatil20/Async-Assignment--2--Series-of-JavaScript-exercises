@@ -77,8 +77,7 @@
 
         // ------------------------------------ Updating display ------------------------------------
         function updateDisplay() {
-            resultDiv.textContent = 'Fetching Data...';
-
+            resultDiv.innerHTML = " "
             fetchData((error, data) => {
                 if (error) {
                     resultDiv.textContent = 'Error fetching data...'
@@ -90,10 +89,7 @@
                     // ------------------------------------ Displaying title after 5sec. ------------------------------------
                     setTimeout(() => {
 
-                        // ------------------------------------ Removing previous message e.g (Fetching Data...) ------------------------------------
-
-                        resultDiv.textContent = " "
-                        posts.forEach(inelement => {
+                        posts.forEach(element => {
                             const title = document.createElement('p')
                             title.style.margin = "4px 0"
                             title.textContent = element.title
