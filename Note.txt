@@ -76,22 +76,21 @@ Part - 3
 
 -------- HTML CSS --------
 
- ---- promises.html 
- ---- Styling and designing 
+ ---- promises.html ----------------------------------------------------------------------------------------------------------------------------👍
+ ---- Styling and designing --------------------------------------------------------------------------------------------------------------------👍
 
 
 
 -------- Async/Await Implementation --------
 
---- Button and div element in html file
---- functionality that uses async/await to fetch data from the JSONPlaceholder (API (POSTS endpoint) : - https://dummyjson.com/posts)
----  Display "Loading..." in the div element while the data is being fetched and 
-     update the text to show the fetched data once it is received.
+--- Button and div element in html file --------------------------------------------------------------------------------------------------------👍
+--- functionality that uses async/await to fetch data from the JSONPlaceholder (API (POSTS endpoint) : - https://dummyjson.com/posts) ----------👍
+---  Display "Loading..." in the div element while the data is being fetched and  --------------------------------------------------------------👍
+     update the text to show the fetched data once it is received. -----------------------------------------------------------------------------👍
 
 
 
 -------- Error Handling --------
 
---- error handling in the async/await implementation.
---- Handle errors such as network issues or timeouts gracefully and display error 
-messages in the div element
+--- error handling in the async/await implementation. ------------------------------------------------------------------------------------------👍
+--- Handle errors such as network issues or timeouts gracefully and display error messages in the div element  ---------------------------------👍
